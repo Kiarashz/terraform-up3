@@ -20,7 +20,7 @@ resource "aws_vpc_security_group_ingress_rule" "allow_http_from_vpc_ipv4" {
 
 resource "aws_vpc_security_group_ingress_rule" "allow_ssh_private" {
   security_group_id = aws_security_group.my_webserver.id
-  cidr_ipv4         = var.my_ip4_address
+  cidr_ipv4         = var.allowed_ssh_source_ip
   from_port         = 22
   to_port           = 22
   ip_protocol       = "tcp"
