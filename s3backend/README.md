@@ -14,3 +14,27 @@ terraform {
   }
 }
 ```
+
+To avoid replication of these settings in every module, one option is to use the following configs.
+```
+# backend.hcl
+bucket         = "terraform-up-and-running-state"
+region         = "us-east-2"
+dynamodb_table = "terraform-up-and-running-locks"
+encrypt        = true
+```
+
+```
+terraform {
+  backend "s3" {
+    key            = "example/terraform.tfstate"
+  }
+}
+```
+
+Then set backend on command line:
+```
+terraform init -backend-config=backend.hcl
+```
+
+Terragrant makes this easier.
