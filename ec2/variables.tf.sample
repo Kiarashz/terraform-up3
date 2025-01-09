@@ -1,5 +1,0 @@
-# Before running replace sample values with the actual ones and rename this to variables.tf.
-variable "allowed_ssh_source_ip" {
-  default = "123.456.789.123/32"
-  description = "replace this with your IP4 address to restrict SSH from your IP only"
-}
