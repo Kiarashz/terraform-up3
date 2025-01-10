@@ -1,9 +1,6 @@
 resource "docker_image" "nginx" {
   name         = "nginx:latest"
   keep_locally = true
-  # lifecycle {
-  #   prevent_destroy = true
-  # }
 }
 
 resource "docker_container" "nginx1" {

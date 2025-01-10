@@ -5,12 +5,12 @@ variable "cprefix" {
 
 variable "nginx1_port" {
   description = "Port to expose on the host for the first nginx container"
-  default     = 80
+  default     = 8081
   
 }
 
 variable "nginx2_port" {
   description = "Port to expose on the host for the first nginx container"
-  default     = 8080
+  default     = 8082
   
 }
