@@ -18,7 +18,7 @@ resource "aws_vpc_security_group_ingress_rule" "allow_load_balancer_ipv4" {
   ip_protocol       = "tcp"
   tags = {
     Name = "ingress_https_to_elb"
-  }  
+  }
 }
 
 resource "aws_vpc_security_group_egress_rule" "allow_to_webservers" {
@@ -107,9 +107,9 @@ resource "aws_vpc_security_group_ingress_rule" "allow_http_from_vpc_ipv4" {
   security_group_id = aws_security_group.my_webserver.id
   # set source to upstream security group
   referenced_security_group_id = aws_security_group.load_balancer.id
-  from_port         = 80
-  to_port           = 80
-  ip_protocol       = "tcp"
+  from_port                    = 80
+  to_port                      = 80
+  ip_protocol                  = "tcp"
   tags = {
     Name = "allow_http_from_vpc_ipv4"
   }
@@ -164,7 +164,7 @@ resource "aws_autoscaling_group" "webservers" {
   max_size            = 3
 
   target_group_arns = [aws_lb_target_group.webservers.arn]
-  health_check_type = "ELB"  # or EC2
+  health_check_type = "ELB" # or EC2
 
   tag {
     key                 = "Name"
@@ -184,7 +184,7 @@ resource "aws_eip" "nat" {
 resource "aws_nat_gateway" "natgw" {
   allocation_id = aws_eip.nat.id
   subnet_id     = aws_default_subnet.public_az1.id
-  
+
 }
 
 # create route table for private subnets to use NAT gateway
@@ -192,7 +192,7 @@ resource "aws_route_table" "private_rt" {
   vpc_id = data.aws_vpc.default.id
   tags = {
     Name = "route-table-4-private-subnets"
-  }  
+  }
 
 }
 
@@ -205,7 +205,7 @@ resource "aws_route" "private_to_nat" {
 resource "aws_route" "private_local" {
   route_table_id         = aws_route_table.private_rt.id
   destination_cidr_block = "172.31.0.0/16"
-  gateway_id = "local"
+  gateway_id             = "local"
 }
 
 resource "aws_route_table_association" "private_az1" {
